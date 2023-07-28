@@ -17,25 +17,36 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 }
 
 function validateInput(testInput) {
-   let pilotName = document.querySelector("input[name=pilotName]");
-   let copilotName = document.querySelector("input[name=copilotName]");
+
    let numInput = Number(testInput);
    
    if(testInput === "") {
     return "empty";
+
    } else if (isNaN(numInput) === false) {
     return "is a number";
+
    } else if (isNaN(numInput) === true){
     return "not a number";
-   }
-//    alert("username: " + usernameInput.value);
 
+   }
 }
 
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-   let fuelLevel = document.getElementById("fuelLevel");
-   let 
+    let faultyItems = document.getEelementById("faultyItems");
+    let launchStatus = document.getEelementById("launchStatus");
+
+  validateInput(pilot);
+  validateInput(copilot);
+  validateInput(fuelLevel);
+  validateInput(cargoLevel);
+
+  if (fuelLevel < 10000){
+    faultyItems.document.style = "visibility: visible";
+    launchStatus.innerHTML = "Shuttle not ready for launch";
+    launchStatus.document.style.color = "#C7254E";
+  }
 
 }
 
