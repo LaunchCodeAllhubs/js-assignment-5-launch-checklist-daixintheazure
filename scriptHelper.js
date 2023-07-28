@@ -17,7 +17,8 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 }
 
 function validateInput(testInput) {
-   
+   let usernameInput = document.querySelector("input[name=pilotame]");
+   alert("username: " + usernameInput.value);
 }
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
