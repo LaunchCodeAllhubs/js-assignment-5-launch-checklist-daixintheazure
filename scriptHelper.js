@@ -36,16 +36,21 @@ function validateInput(testInput) {
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     let faultyItems = document.getEelementById("faultyItems");
     let launchStatus = document.getEelementById("launchStatus");
+    let cargoMass = document.getEelementById("cargoMass");
 
-  validateInput(pilot);
-  validateInput(copilot);
-  validateInput(fuelLevel);
-  validateInput(cargoLevel);
+    let checkArr = [pilot, copilot, fuelLevel, cargoLevel];
 
-  if (fuelLevel < 10000){
+    for(let i = 0; i < checkArr.length; i++) {
+      validateInput(checkArr[i]);
+    }
+
+
+  if (fuelLevel < 10000 || cargoMass > 10000){
     faultyItems.document.style = "visibility: visible";
     launchStatus.innerHTML = "Shuttle not ready for launch";
     launchStatus.document.style.color = "#C7254E";
+  } else {
+    launchStatus.document.style.color = "#419F6A";
   }
 
 }
