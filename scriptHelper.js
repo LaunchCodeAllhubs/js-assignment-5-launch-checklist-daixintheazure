@@ -37,6 +37,8 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     let faultyItems = document.getEelementById("faultyItems");
     let launchStatus = document.getEelementById("launchStatus");
     let cargoMass = document.getEelementById("cargoMass");
+    let pilotStatus = document.getEelementById("pilotStatus");
+    let copilotStatus = document.getEelementById("copilotStatus");
 
     let checkArr = [pilot, copilot, fuelLevel, cargoLevel];
 
@@ -49,7 +51,9 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     faultyItems.document.style = "visibility: visible";
     launchStatus.innerHTML = "Shuttle not ready for launch";
     launchStatus.document.style.color = "#C7254E";
+
   } else {
+    launchStatus.innerHTML = "Shuttle is ready for launch";
     launchStatus.document.style.color = "#419F6A";
   }
 
