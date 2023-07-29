@@ -16,11 +16,14 @@ window.addEventListener("load", function() {
         let copilotValue = copilot.value;
 
         let fuelLevel = document.querySelector("input[name=fuelLevel]");
-        let fuelLevelValue = fuelLevel.value;
-        
-        let cargoLevel = document.querySelector("input[name=cargoLevel]");
-        let cargoLevelValue = cargoLevel.value;
+        let fuelLevelValue = Number(fuelLevel.value);
 
+        let cargoLevel = document.querySelector("input[name=cargoLevel]");
+        let cargoLevelValue = Number(cargoLevel.value);
+
+        let list = document.getElementById("faultyItem");
+        list.style.visibility = "hidden";
+        
 
         formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel);
         
