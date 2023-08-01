@@ -42,33 +42,38 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     let cargoMass = document.getElementById("cargoMass");
     let pilotStatus = document.getElementById("pilotStatus");
     let copilotStatus = document.getElementById("copilotStatus");
+    let pilotCheck = validateInput(pilot);
+    let copilotCheck = validateInput(copilot);
+    let fuelLevelCheck = validateInput(fuelLevel);
+    let cargoLevelCheck = validateInput(cargoLevel);
 
-    let checkArr = [pilot, copilot, fuelLevel, cargoLevel];
+    console.log(pilotCheck, cargoLevelCheck, copilotCheck, fuelLevelCheck);
 
-    for (let i = 0; i > checkArr.length; i++) {
-      console.log(validateInput(checkArr[i]));
-      if (validateInput(checkArr[i]) === "empty") {
-        alert("All fields are required!");
-        break;
+    if(pilotCheck === "empty" || copilotCheck === "empty" || fuelLevelCheck === "empty" || cargoLevelCheck === "empty"){
+      alert("stuff");
+
+    } else if (fuelLevelCheck === "not a number" || cargoLevelCheck === "not a number"){
+      alert("other stuph");
+
+    } else {
+
+      if (fuelLevel < 10000 || cargoLevel > 10000){
+        faultyItems.style = "visibility: visible";
+        launchStatus.innerHTML = "Shuttle not ready for launch";
+        launchStatus.style.color = "#C7254E";
+
+      } else {
+        launchStatus.innerHTML = "Shuttle is ready for launch";
+        launchStatus.style.color = "#419F6A";
       }
 
-      if(i > 2 && validateInput(checkArr[i]) === "not a number"){
-        alert("Make sure to enter valid information for each field");
-        break;
-      }
     }
 
+  
 
 
-  if (fuelLevel < 10000 || cargoLevel > 10000){
-    faultyItems.style = "visibility: visible";
-    launchStatus.innerHTML = "Shuttle not ready for launch";
-    launchStatus.style.color = "#C7254E";
 
-  } else {
-    launchStatus.innerHTML = "Shuttle is ready for launch";
-    launchStatus.style.color = "#419F6A";
-  }
+  
 
 }
 
