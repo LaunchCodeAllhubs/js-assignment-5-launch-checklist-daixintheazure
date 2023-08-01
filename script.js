@@ -1,12 +1,13 @@
 // Write your JavaScript code here!
 
-const { validateInput, addDestinationInfo, pickPlanet } = require("./scriptHelper");
+// const { validateInput, addDestinationInfo, pickPlanet, formSubmission } = require("./scriptHelper");
 
 window.addEventListener("load", function() {
    
     let form = document.querySelector("form");
 
     form.addEventListener("submit", function(event) {
+
         event.preventDefault();
 
         let pilot = document.querySelector("input[name=pilotName]");
@@ -18,21 +19,21 @@ window.addEventListener("load", function() {
         let fuelLevel = document.querySelector("input[name=fuelLevel]");
         let fuelLevelValue = Number(fuelLevel.value);
 
-        let cargoLevel = document.querySelector("input[name=cargoLevel]");
+        let cargoLevel = document.querySelector("input[name=cargoMass]");
         let cargoLevelValue = Number(cargoLevel.value);
 
-        let list = document.getElementById("faultyItem");
+        let list = document.getElementById("faultyItems");
         list.style.visibility = "hidden";
         
 
-        formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel);
+        formSubmission(document, list, pilot, copilot, fuelLevelValue, cargoLevelValue);
         
     })
 
    let listedPlanets;
    // Set listedPlanetsResponse equal to the value returned by calling myFetch()
-   let listedPlanetsResponse;
-   listedPlanetsResponse.then(function (result) {
+   let listedPlanetsResponse = myFetch();
+   listedPlanetsResponse.then(function(result) {
        listedPlanets = result;
        console.log(listedPlanets);
    }).then(function () {

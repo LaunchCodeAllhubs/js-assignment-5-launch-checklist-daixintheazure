@@ -3,7 +3,8 @@ require('isomorphic-fetch');
 
 function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
    // Here is the HTML formatting for our mission target div.
-   /*
+   let missionDestination = document.getElementById("missionTarget");
+   missionDestination.innerHTML = `
                 <h2>Mission Destination</h2>
                 <ol>
                     <li>Name: ${name} </li>
@@ -13,7 +14,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
                     <li>Number of Moons: ${moons}</li>
                 </ol>
                 <img src="${imageUrl}">
-   */
+   `;
 }
 
 function validateInput(testInput) {
@@ -34,11 +35,11 @@ function validateInput(testInput) {
 
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-    let faultyItems = document.getEelementById("faultyItems");
-    let launchStatus = document.getEelementById("launchStatus");
-    let cargoMass = document.getEelementById("cargoMass");
-    let pilotStatus = document.getEelementById("pilotStatus");
-    let copilotStatus = document.getEelementById("copilotStatus");
+    let faultyItems = document.getElementById("faultyItems");
+    let launchStatus = document.getElementById("launchStatus");
+    let cargoMass = document.getElementById("cargoMass");
+    let pilotStatus = document.getElementById("pilotStatus");
+    let copilotStatus = document.getElementById("copilotStatus");
 
     let checkArr = [pilot, copilot, fuelLevel, cargoLevel];
 
@@ -47,25 +48,26 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     }
 
 
-  if (fuelLevel < 10000 || cargoMass > 10000){
-    faultyItems.document.style = "visibility: visible";
+  if (fuelLevel < 10000 || cargoLevel > 10000){
+    faultyItems.style = "visibility: visible";
     launchStatus.innerHTML = "Shuttle not ready for launch";
-    launchStatus.document.style.color = "#C7254E";
+    launchStatus.style.color = "#C7254E";
 
   } else {
     launchStatus.innerHTML = "Shuttle is ready for launch";
-    launchStatus.document.style.color = "#419F6A";
+    launchStatus.style.color = "#419F6A";
   }
 
 }
 
 async function myFetch() {
-    let planetsReturned = response;
+    let planetsReturned;
 
     planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
+      planetList = planetsReturned;
         });
 
-    return planetsReturned;
+    return planetList;
 }
 
 function pickPlanet(planets) {
