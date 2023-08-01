@@ -3,25 +3,27 @@ require('isomorphic-fetch');
 
 function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
    // Here is the HTML formatting for our mission target div.
-   let missionDestination = document.getElementById("missionTarget");
+   const missionDestination = this.document.getElementById("missionTarget");
+
    missionDestination.innerHTML = `
                 <h2>Mission Destination</h2>
                 <ol>
-                    <li>Name: ${name} </li>
-                    <li>Diameter: ${diameter} </li>
-                    <li>Star: ${star}</li>
-                    <li>Distance from Earth: ${distance}</li>
-                    <li>Number of Moons: ${moons}</li>
+                    <li>Name: ${document.name} </li>
+                    <li>Diameter: ${document.diameter} </li>
+                    <li>Star: ${document.star}</li>
+                    <li>Distance from Earth: ${document.distance}</li>
+                    <li>Number of Moons: ${document.moons}</li>
                 </ol>
-                <img src="${imageUrl}">
+                <img src=${document.image}>
    `;
+
 }
 
 function validateInput(testInput) {
 
    let numInput = Number(testInput);
    
-   if(testInput === "") {
+   if (testInput === "") {
     return "empty";
 
    } else if (isNaN(numInput) === false) {
@@ -43,9 +45,19 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 
     let checkArr = [pilot, copilot, fuelLevel, cargoLevel];
 
-    for(let i = 0; i < checkArr.length; i++) {
-      validateInput(checkArr[i]);
+    for (let i = 0; i > checkArr.length; i++) {
+      console.log(validateInput(checkArr[i]));
+      if (validateInput(checkArr[i]) === "empty") {
+        alert("All fields are required!");
+        break;
+      }
+
+      if(i > 2 && validateInput(checkArr[i]) === "not a number"){
+        alert("Make sure to enter valid information for each field");
+        break;
+      }
     }
+
 
 
   if (fuelLevel < 10000 || cargoLevel > 10000){
@@ -64,14 +76,17 @@ async function myFetch() {
     let planetsReturned;
 
     planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
-      planetList = planetsReturned;
-        });
-
-    return planetList;
+       return response.json();
+      // console.log(response.json());
+    });
+    return planetsReturned;
+  
 }
 
 function pickPlanet(planets) {
-  let selectedPlanet = planets[Math.random(planets.length)];
+  // console.log(planets);
+  let selectedPlanet = planets[Math.floor(Math.random() * planets.length )];
+  // console.log(selectedPlanet);
 
   return selectedPlanet;
 }
