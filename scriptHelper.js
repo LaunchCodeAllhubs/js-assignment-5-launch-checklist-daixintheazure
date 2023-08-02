@@ -39,8 +39,8 @@ function validateInput(testInput) {
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     let faultyItems = document.getElementById("faultyItems");
     let launchStatus = document.getElementById("launchStatus");
-    let fuelLevel = document.getElementById("fuelLevel");
-    let cargoMass = document.getElementById("cargoMass");
+    let fuelStatus = document.getElementById("fuelStatus");
+    let cargoStatus = document.getElementById("cargoStatus");
     let pilotStatus = document.getElementById("pilotStatus");
     let copilotStatus = document.getElementById("copilotStatus");
     let pilotCheck = validateInput(pilot);
@@ -66,11 +66,15 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
         launchStatus.style.color = "#C7254E";
 
         if(fuelLevel < 10000){
-          fuelLevel.innerHTML = `Fuel level too low for launch`;
+          fuelStatus.innerHTML = `Fuel level too low for launch`;
+        } else {
+          fuelStatus.innerHTML = `Fuel level high enough for launch`;
         }
 
         if(cargoLevel > 10000){
-          cargoLevel.innerHTML = `Cargo mass too high for launch`;
+          cargoStatus.innerHTML = `Cargo mass too high for launch`;
+        } else {
+          cargoStatus.innerHTML =`Cargo mass low enough for launch`;
         }
 
       } else {
